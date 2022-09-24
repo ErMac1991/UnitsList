@@ -8,7 +8,7 @@ public class closingGoogleTab {
         String tabName = "Таблица юнитов HOMM3 + HOTA";
 
         Selenide.switchTo().window(0);
-        Clicker.Clicker("//input[@class='docs-title-input']");
+       // Clicker.Clicker("//input[@class='docs-title-input']");
          Selenide.$x("//input[@class='docs-title-input']").setValue(tabName);
          Clicker.Clicker("//div[@class='grid-table-container']");
 
@@ -31,11 +31,14 @@ public class closingGoogleTab {
        }
 
         Clicker.Clicker("//div[@aria-label='Выравнивание по горизонтали']");
-        Clicker.Clicker("//div[@aria-label='По центру']");
+        Clicker.Clicker("//div[@id='t-align-middle']");
+        Selenide.sleep(1000);
         Clicker.Clicker("//div[@aria-label='Выравнивание по вертикали']");
-        Clicker.Clicker("//div[@aria-label='По центру']");
+        Clicker.Clicker("//div[@id='t-align-center']");
+        Selenide.sleep(1000);
         Clicker.Clicker("//div[@aria-label='Перенос текста']");
         Clicker.Clicker("//div[@aria-label='Переносить по словам']");
+        Selenide.sleep(1000);
 
 
 
