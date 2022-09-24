@@ -12,7 +12,7 @@ public class Homm3TabCellsGrabler {
         String urlOfCard = null;        // Ссылка на карточку существа
 
         int iTabs; // счетчик для цикла таблиц
-        int countTabs; // количество таблиц
+        int allTabsOnPage;
         int iLines; // счетчик для цикла строк в таблице
         int countLinesInTab; // количество строк в таблице
         int iCells; // счетчик для цикла ячеек в строке
@@ -24,7 +24,9 @@ public class Homm3TabCellsGrabler {
 
         Selenide.switchTo().window(1);
 
-        for (iTabs = 1; iTabs <= tabs.size(); iTabs++) {
+        allTabsOnPage = tabs.size()-1; // В этом классе берем только фракционных юнитов HOMM3
+
+        for (iTabs = 1; iTabs <= allTabsOnPage; iTabs++) {
 
             lines = $$x("//table[" + iTabs + "]//tr");
             countLinesInTab = lines.size();

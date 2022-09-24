@@ -9,7 +9,7 @@ public class FollowHomm3Creatures {
 
         Clicker.Clicker("//b[text()='Heroes III']");
 
-        Clicker.Clicker("//figcaption[text()='Список существ Heroes of Might and Magic III']");
+        Clicker.Clicker("//a[text()='Список существ Heroes of Might and Magic III']");
         Main.urlCrTabs = WebDriverRunner.getWebDriver().getCurrentUrl();
 
     }

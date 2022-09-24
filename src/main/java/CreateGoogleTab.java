@@ -1,8 +1,5 @@
 import com.codeborne.selenide.*;
 
-
-
-
 public class CreateGoogleTab {
     public static String email = "testovtester2022@gmail.com";
     public static String password = "TestTest";
@@ -23,7 +20,8 @@ public class CreateGoogleTab {
             Clicker.Clicker("//div[text()='Таблицы']");
             Clicker.Clicker("//div[text()='Пустой файл']/../../../div[@class='docs-homescreen-templates-templateview-preview " +
                     "docs-homescreen-templates-templateview-preview-showcase']");
-          //  Selenide.$x("//input[@class='docs-title-input']").setValue("Таблица юнитов HOMM3 + HOTA");
+
+
     }
 
 }

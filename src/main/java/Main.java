@@ -26,7 +26,7 @@ public  class Main {
      }
     @Test
 
-    public void ANewTab(){
+    public void Engine(){
 
         //Пытаемся открыть вторую вкладку браузера
 
@@ -49,15 +49,16 @@ public  class Main {
 
         Homm3TabCellsGrabler.Homm3TabCellsGrabler();
 
+        // Причесываем таблицу, экспортируем, чистим мусор
+
+        closingGoogleTab.closingGoogleTab();
+
     }
-
-
-
-
 
      @After
      public  void Dropper(){
-          WebDriverManager.chromedriver().quit();
+
+         WebDriverManager.chromedriver().quit();
      }
 
 }
