@@ -40,6 +40,9 @@ public  class Main {
         open(urlGoogleDocs);
         CreateGoogleTab.CreateGoogleTab();
 
+
+
+
         // Переключаемся на вторую вкладку и переходим в раздел существ HOMM3
 
         Selenide.switchTo().window(1);
@@ -48,6 +51,15 @@ public  class Main {
         // Запускаем машину по подтягиванию статов
 
         Homm3TabCellsGrabler.Homm3TabCellsGrabler();
+
+        // Переключаемся на вторую вкладку и переходим в раздел существ HOTA
+
+        Selenide.switchTo().window(1);
+        FollowHotaCr.FollowHotaCr();
+
+        // Запускаем машину по подтягиванию статов
+
+        HotaCrInfoGrabber.HotaCrInfoGrabber();
 
         // Причесываем таблицу, экспортируем, чистим мусор
 

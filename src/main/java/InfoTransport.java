@@ -11,15 +11,15 @@ public class InfoTransport {
         char baseColumn = 'A'; // Столбец, от которого ведется расчет ячейки
 
         Selenide.switchTo().window(0);
-        if (Homm3TabCellsGrabler.gS == true){
-            baseColumn = (char) (baseColumn + 6);
+        if (Homm3TabCellsGrabler.gSIndicator > 0){
+            baseColumn = (char) (baseColumn + (6 * Homm3TabCellsGrabler.gSIndicator));
             Homm3TabCellsGrabler.crLevel = "ГС";
         }
-        if ((Homm3TabCellsGrabler.gS==false) && (!(tabLevel.equals(Homm3TabCellsGrabler.crLevel)))) {
+        if (Homm3TabCellsGrabler.gSIndicator == 0) {
             baseLine = baseLine + 6;
-            tabLevel = Homm3TabCellsGrabler.crLevel;
+            //tabLevel = Homm3TabCellsGrabler.crLevel;
         }
-        if((Homm3TabCellsGrabler.gS==false) && (!(tabFraction.equals(Homm3CrInfoGrabber.crFraction)))){
+        if((Homm3TabCellsGrabler.gSIndicator == 0) && (!(tabFraction.equals(Homm3CrInfoGrabber.crFraction)))){
             baseLine++;
             cellsUnite.cellsUnite(baseColumn, baseLine, (char) (baseColumn + 11), baseLine);
             LineDrawer.LineDrawer(baseColumn, baseLine, (char) (baseColumn + 11), baseLine);

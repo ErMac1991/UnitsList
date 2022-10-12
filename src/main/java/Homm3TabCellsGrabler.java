@@ -4,23 +4,28 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class Homm3TabCellsGrabler {
     public static String crLevel = null; // Ранг существа
+    public static String prevLevel = null; // Значение ранга предыдущего существа
     public static boolean gS = false;
+    public static int gSIndicator = 0;
+    public static int iTabs; // счетчик для цикла таблиц
+    public static int allTabsOnPage;
+    public static int iLines; // счетчик для цикла строк в таблице
+    public static int countLinesInTab; // количество строк в таблице
+    public static int iCells; // счетчик для цикла ячеек в строке
+    public static int countCellsInLine; // количество столбцов в таблице
 
     public static void Homm3TabCellsGrabler() {
 
 
         String urlOfCard = null;        // Ссылка на карточку существа
 
-        int iTabs; // счетчик для цикла таблиц
-        int allTabsOnPage;
-        int iLines; // счетчик для цикла строк в таблице
-        int countLinesInTab; // количество строк в таблице
-        int iCells; // счетчик для цикла ячеек в строке
-        int countCellsInLine; // количество столбцов в таблице
 
-        ElementsCollection tabs = $$("table"); // Список таблиц
+
+        ElementsCollection tabs = $$x("//table"); // Список таблиц
         ElementsCollection lines; // Список строк в таблице
         ElementsCollection cells;
+
+        System.out.println("Запустилась машинка по Homm3");
 
         Selenide.switchTo().window(1);
 
@@ -50,7 +55,16 @@ public class Homm3TabCellsGrabler {
 
                         case 2: // Пороваливаемся в карточку существа и подтягивает статы
 
-                            gS = false;
+                            //gS = false;
+
+                            if (!crLevel.equals(prevLevel)){
+                                gSIndicator = 0;
+                                prevLevel = crLevel;
+                            }
+                            else {
+                                gSIndicator++;
+                            }
+
                             urlOfCard = cells.get(iCells).find("a").getAttribute("href");
                         System.out.println(urlOfCard);
                             Homm3CrInfoGrabber.Homm3CrInfoGrabber(urlOfCard);
@@ -62,7 +76,16 @@ public class Homm3TabCellsGrabler {
 
                         case 4: // Проваливаемся в карточку ГС существа и подтягивает статы
                             urlOfCard = cells.get(iCells).find("a").getAttribute("href");
-                            gS = true;
+                            //gS = true;
+
+                            if (!crLevel.equals(prevLevel)){
+                                gSIndicator = 0;
+                                prevLevel = crLevel;
+                            }
+                            else {
+                                gSIndicator++;
+                            }
+
                           System.out.println("Name of GS  is received its " + Homm3CrInfoGrabber.crName);
                             Homm3CrInfoGrabber.Homm3CrInfoGrabber(urlOfCard);
                             break;

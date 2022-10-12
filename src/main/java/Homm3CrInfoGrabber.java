@@ -44,10 +44,11 @@ public class Homm3CrInfoGrabber {
         }
         if ($x("//span[@id='Особенности']").exists()) {
             crFeatures = $x("//span[@id='Особенности']/following::ul/li").getText();
+            crFeatures = crFeatures.replace("\n", " ");
         }
 
-        String stats[] = {crFraction, Homm3TabCellsGrabler.crLevel, crName, crAttack, crDefence, crShots, crDamage, crHealth,
-                crSpeed, crPrice, crGrowthPerWeek, crAIValue, crFeatures};
+       // String stats[] = {crFraction, Homm3TabCellsGrabler.crLevel, crName, crAttack, crDefence, crShots, crDamage, crHealth,
+       //         crSpeed, crPrice, crGrowthPerWeek, crAIValue, crFeatures};
 
         InfoTransport.InfoTransport();
         open(Main.urlCrTabs);
