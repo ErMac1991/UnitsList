@@ -16,13 +16,31 @@ public class CreateGoogleTab {
       //  Selenide.sleep(2000);
         Clicker.Clicker("//button/span[text()='Далее']");
 
-        // поменять на 5000
+
 
         Selenide.sleep(5000);
+
+        if (Selenide.$x("//h1/span[text()='Подтвердите свою личность']").exists()) {
+            MailApprover.MailApprover();
+        }
+
             Clicker.Clicker("//div[@aria-label='Главное меню']");
             Clicker.Clicker("//div[text()='Таблицы']");
             Clicker.Clicker("//div[text()='Пустой файл']/../../../div[@class='docs-homescreen-templates-templateview-preview " +
                     "docs-homescreen-templates-templateview-preview-showcase']");
+
+
+
+
+       // "//h1/span[text()='Подтвердите свою личность']"
+
+
+
+        // "//div[text()='Подтвердите резервный адрес электронной почты']"
+        // "//div[text()='Введите резервный адрес электронной почты']"
+        // "//button/span[text()='Далее']"
+
+
 
 
     }
