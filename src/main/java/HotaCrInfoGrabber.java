@@ -3,7 +3,7 @@ import com.codeborne.selenide.Selenide;
 
 import static com.codeborne.selenide.Selenide.*;
 
-public class HotaCrInfoGrabber {
+public class  HotaCrInfoGrabber {
 
 
 
@@ -12,6 +12,7 @@ public class HotaCrInfoGrabber {
         Homm3CrInfoGrabber.crFeatures = "";
         Homm3CrInfoGrabber.crShots = "-";
         Homm3CrInfoGrabber.crFraction = "Причал";
+        String chosenXPath;
 
         Selenide.switchTo().window(1);
 
@@ -28,7 +29,8 @@ public class HotaCrInfoGrabber {
 
         for (Homm3TabCellsGrabler.iTabs = 1; Homm3TabCellsGrabler.iTabs <= Homm3TabCellsGrabler.allTabsOnPage; Homm3TabCellsGrabler.iTabs++) {
 
-            lines = $$x("//h3/span[contains(text(),'-й уровень')]/../following::table[" + Homm3TabCellsGrabler.iTabs + "]/tbody/tr");
+            chosenXPath = HotaTabFinder.HotaTabFinder(Homm3TabCellsGrabler.iTabs);
+            lines = $$x(chosenXPath);
             Homm3TabCellsGrabler.countLinesInTab = lines.size();
             System.out.println("Количество строк в таблице " + Homm3TabCellsGrabler.countLinesInTab);
 
@@ -110,6 +112,9 @@ public class HotaCrInfoGrabber {
 
                // "//h3/span[contains(text(),'-й уровень')]"
                 // "//h3/span[contains(text(),'-й уровень')]/../following::table[1]/tbody/tr[1]/td[1]"
+
+
+
 
             }
         }

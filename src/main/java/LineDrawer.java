@@ -3,7 +3,7 @@ import com.codeborne.selenide.Selenide;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
-public class LineDrawer {
+public class   LineDrawer {
     public static void LineDrawer(char ch1, int num1, char ch2, int num2){
         Robot lineDrawerRobot; // Рисуем границы
 

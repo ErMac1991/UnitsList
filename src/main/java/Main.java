@@ -1,6 +1,8 @@
 import com.codeborne.selenide.*;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.*;
+import org.openqa.selenium.WebElement;
+
 import static com.codeborne.selenide.Configuration.*;
 import static com.codeborne.selenide.Selenide.*;
 
@@ -30,7 +32,7 @@ public  class Main {
 
         //Пытаемся открыть вторую вкладку браузера
 
-        open("https://google.com");
+        open();
         OpenNewWindow.OpenNewWindow();
         Selenide.sleep(5000);
 
@@ -39,15 +41,6 @@ public  class Main {
         Selenide.switchTo().window(0);
         open(urlGoogleDocs);
         CreateGoogleTab.CreateGoogleTab();
-
-        // Переключаемся на вторую вкладку и переходим в раздел существ HOTA
-
-        Selenide.switchTo().window(1);
-        FollowHotaCr.FollowHotaCr();
-
-        // Запускаем машину по подтягиванию статов
-
-        HotaCrInfoGrabber.HotaCrInfoGrabber();
 
 
         // Переключаемся на вторую вкладку и переходим в раздел существ HOMM3
@@ -59,11 +52,19 @@ public  class Main {
 
         Homm3TabCellsGrabler.Homm3TabCellsGrabler();
 
+// Переключаемся на вторую вкладку и переходим в раздел существ HOTA
 
+        Selenide.switchTo().window(1);
+        FollowHotaCr.FollowHotaCr();
+
+        // Запускаем машину по подтягиванию статов
+
+        HotaCrInfoGrabber.HotaCrInfoGrabber();
 
         // Причесываем таблицу, экспортируем, чистим мусор
 
         closingGoogleTab.closingGoogleTab();
+
 
     }
 
