@@ -18,24 +18,25 @@ public class  HotaCrInfoGrabber {
 
         System.out.println("Определили фракцию: " + Homm3CrInfoGrabber.crFraction);
 
-        ElementsCollection tabs = $$x("//h3/span[contains(text(),'-й уровень')]/../following::table"); // Список таблиц
+        ElementsCollection tabs = $$x("//h3/span[contains(text(),'-й уровень')]/../following::table[1]"); // Список таблиц
         ElementsCollection lines; // Список строк в таблице
         ElementsCollection cells; // Список ячеек в строке
 
         System.out.println("Подтянули таблицы, их " + tabs.size());
 
 
-        Homm3TabCellsGrabler.allTabsOnPage = tabs.size() - 1; // В этом классе берем только фракционных юнитов HOTA
+        Homm3TabCellsGrabler.allTabsOnPage = tabs.size(); // В этом классе берем только фракционных юнитов HOTA
 
         for (Homm3TabCellsGrabler.iTabs = 1; Homm3TabCellsGrabler.iTabs <= Homm3TabCellsGrabler.allTabsOnPage; Homm3TabCellsGrabler.iTabs++) {
 
             chosenXPath = HotaTabFinder.HotaTabFinder(Homm3TabCellsGrabler.iTabs);
-            lines = $$x(chosenXPath);
+            lines = $$x("//h3/span[text()='" + Homm3TabCellsGrabler.iTabs + "-й уровень']/../following::table[1]/tbody/tr");
             Homm3TabCellsGrabler.countLinesInTab = lines.size();
             System.out.println("Количество строк в таблице " + Homm3TabCellsGrabler.countLinesInTab);
 
             for (Homm3TabCellsGrabler.iLines = 2; Homm3TabCellsGrabler.iLines <= Homm3TabCellsGrabler.countLinesInTab; Homm3TabCellsGrabler.iLines++) {
-                cells = $$x("//h3/span[contains(text(),'-й уровень')]/../following::table[" + Homm3TabCellsGrabler.iTabs + "]/tbody/tr[" + Homm3TabCellsGrabler.iLines + "]/td");
+                chosenXPath = HotaTabFinder.HotaTabFinder(Homm3TabCellsGrabler.iTabs, Homm3TabCellsGrabler.iLines);
+                cells = $$x("//h3/span[text()='" + Homm3TabCellsGrabler.iTabs + "-й уровень']/../following::table[1]/tbody/tr[" + Homm3TabCellsGrabler.iLines +"]/td");
                 Homm3TabCellsGrabler.countCellsInLine = cells.size();
                 System.out.println("Количество ячеек в строке " + Homm3TabCellsGrabler.countCellsInLine);
 
@@ -53,8 +54,8 @@ public class  HotaCrInfoGrabber {
 
                 for (Homm3TabCellsGrabler.iCells = 0; Homm3TabCellsGrabler.iCells < Homm3TabCellsGrabler.countCellsInLine; Homm3TabCellsGrabler.iCells++) { // Захват данных из таблицы существ
                     System.out.println("Cell indicator is " + Homm3TabCellsGrabler.iCells);
-
-                    String paramValue = $x("//h3/span[contains(text(),'-й уровень')]/../following::table[" + Homm3TabCellsGrabler.iTabs + "]/tbody/tr[" + Homm3TabCellsGrabler.iLines + "]/td[" + (Homm3TabCellsGrabler.iCells + 1) + "]").getText();
+                    chosenXPath = HotaTabFinder.HotaTabFinder(Homm3TabCellsGrabler.iTabs, Homm3TabCellsGrabler.iLines, Homm3TabCellsGrabler.iCells);
+                    String paramValue = $x("//h3/span[text()='" + Homm3TabCellsGrabler.iTabs + "-й уровень']/../following::table[1]/tbody/tr[" + Homm3TabCellsGrabler.iLines +"]/td[" + (Homm3TabCellsGrabler.iCells + 1) + "]").getText();
 
                     switch (Homm3TabCellsGrabler.iCells + 1) {
 
@@ -88,6 +89,7 @@ public class  HotaCrInfoGrabber {
                             }
                             if (Homm3TabCellsGrabler.countCellsInLine == 9) {
                                 Homm3CrInfoGrabber.crFeatures = paramValue;
+                                Homm3CrInfoGrabber.crShots = "-";
                             }
 
                         case 10:

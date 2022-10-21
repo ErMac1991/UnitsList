@@ -6,7 +6,8 @@ public class MailApprover {
         // String pass = "TestTest";
 
         Clicker.Clicker("//div[text()='Подтвердите резервный адрес электронной почты']");
-        Selenide.$x("//div[text()='Введите резервный адрес электронной почты']").setValue(mailForApprove);
+
+        Selenide.$x("//input[@aria-label='Введите резервный адрес электронной почты']").setValue(mailForApprove);
         Clicker.Clicker("//button/span[text()='Далее']");
 
     }

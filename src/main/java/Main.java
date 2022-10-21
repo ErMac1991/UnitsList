@@ -42,6 +42,14 @@ public  class Main {
         open(urlGoogleDocs);
         CreateGoogleTab.CreateGoogleTab();
 
+        // Переключаемся на вторую вкладку и переходим в раздел существ HOTA
+
+        Selenide.switchTo().window(1);
+        FollowHotaCr.FollowHotaCr();
+
+        // Запускаем машину по подтягиванию статов
+
+        HotaCrInfoGrabber.HotaCrInfoGrabber();
 
         // Переключаемся на вторую вкладку и переходим в раздел существ HOMM3
 
@@ -52,14 +60,7 @@ public  class Main {
 
         Homm3TabCellsGrabler.Homm3TabCellsGrabler();
 
-// Переключаемся на вторую вкладку и переходим в раздел существ HOTA
 
-        Selenide.switchTo().window(1);
-        FollowHotaCr.FollowHotaCr();
-
-        // Запускаем машину по подтягиванию статов
-
-        HotaCrInfoGrabber.HotaCrInfoGrabber();
 
         // Причесываем таблицу, экспортируем, чистим мусор
 
