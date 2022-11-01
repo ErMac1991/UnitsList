@@ -33,6 +33,10 @@ public class Homm3TabCellsGrabler {
 
         for (iTabs = 1; iTabs <= allTabsOnPage; iTabs++) {
 
+            if (Main.isNeutral == true) {
+                iTabs = allTabsOnPage +1;
+            }
+
             lines = $$x("//table[" + iTabs + "]//tr");
             countLinesInTab = lines.size();
            System.out.println(countLinesInTab);
@@ -98,6 +102,15 @@ public class Homm3TabCellsGrabler {
                             System.out.println("Wrong way");
 
                     }
+                }
+
+                if (Main.isNeutral == true) { // Подтягиваем нейтралов с Hota
+
+                    FollowHotaCr.FollowHotaCr();
+                    HotaCrInfoGrabber.HotaCrInfoGrabber();
+                    open(Main.urlCrTabs);
+                    System.out.println("Вернулись на страницу с таблицами существ Homm3");
+
                 }
 
             }

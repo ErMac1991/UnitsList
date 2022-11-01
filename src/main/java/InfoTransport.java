@@ -11,14 +11,24 @@ public class InfoTransport {
         char baseColumn = 'A'; // Столбец, от которого ведется расчет ячейки
 
         Selenide.switchTo().window(0);
+
+
+
+
         if (Homm3TabCellsGrabler.gSIndicator > 0){
             baseColumn = (char) (baseColumn + (6 * Homm3TabCellsGrabler.gSIndicator));
-            Homm3TabCellsGrabler.crLevel = "ГС";
+            if (Main.isNeutral == false) {
+                Homm3TabCellsGrabler.crLevel = "ГС";
+            }
+
         }
         if (Homm3TabCellsGrabler.gSIndicator == 0) {
             baseLine = baseLine + 6;
             //tabLevel = Homm3TabCellsGrabler.crLevel;
         }
+
+
+
         if((Homm3TabCellsGrabler.gSIndicator == 0) && (!(tabFraction.equals(Homm3CrInfoGrabber.crFraction)))){
             baseLine++;
             cellsUnite.cellsUnite(baseColumn, baseLine, (char) (baseColumn + 11), baseLine);
@@ -26,6 +36,13 @@ public class InfoTransport {
             gTabCellDataPaste.gTabCellDataPaste(baseColumn, baseLine, Homm3CrInfoGrabber.crFraction);
             baseLine++;
             tabFraction = Homm3CrInfoGrabber.crFraction;
+        }
+
+        if (Main.isNeutral == true && Homm3TabCellsGrabler.gSIndicator > 1) {
+
+            Homm3TabCellsGrabler.gSIndicator = 0;
+            baseLine = baseLine + 6;
+            baseColumn = 'A';
         }
 
         cellsUnite.cellsUnite(baseColumn, baseLine, baseColumn, (baseLine + 5)); // Объединяем ячейку под уровень

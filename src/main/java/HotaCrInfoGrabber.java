@@ -4,14 +4,29 @@ import com.codeborne.selenide.Selenide;
 import static com.codeborne.selenide.Selenide.*;
 
 public class  HotaCrInfoGrabber {
-
+    static int iTabsHota;
+    static int iLinesHota;
+    static int iCellsHota;
+    static int allTabsOnPageHota;
+    static int countLinesInTabHota;
+    static int countCellsInLineHota;
 
 
     public static void HotaCrInfoGrabber() { // разобраться в xpath элементов таблицы
 
+        String nLevel = null;
+        String paramValue = null;
+
+
         Homm3CrInfoGrabber.crFeatures = "";
         Homm3CrInfoGrabber.crShots = "-";
-        Homm3CrInfoGrabber.crFraction = "Причал";
+        if (Main.isNeutral == false) {
+            Homm3CrInfoGrabber.crFraction = "Причал";
+        }
+        else {
+            Homm3CrInfoGrabber.crFraction = "Нейтралы";
+        }
+
         String chosenXPath;
 
         Selenide.switchTo().window(1);
@@ -25,39 +40,81 @@ public class  HotaCrInfoGrabber {
         System.out.println("Подтянули таблицы, их " + tabs.size());
 
 
-        Homm3TabCellsGrabler.allTabsOnPage = tabs.size(); // В этом классе берем только фракционных юнитов HOTA
-
-        for (Homm3TabCellsGrabler.iTabs = 1; Homm3TabCellsGrabler.iTabs <= Homm3TabCellsGrabler.allTabsOnPage; Homm3TabCellsGrabler.iTabs++) {
-
-            chosenXPath = HotaTabFinder.HotaTabFinder(Homm3TabCellsGrabler.iTabs);
-            lines = $$x("//h3/span[text()='" + Homm3TabCellsGrabler.iTabs + "-й уровень']/../following::table[1]/tbody/tr");
-            Homm3TabCellsGrabler.countLinesInTab = lines.size();
-            System.out.println("Количество строк в таблице " + Homm3TabCellsGrabler.countLinesInTab);
-
-            for (Homm3TabCellsGrabler.iLines = 2; Homm3TabCellsGrabler.iLines <= Homm3TabCellsGrabler.countLinesInTab; Homm3TabCellsGrabler.iLines++) {
-                chosenXPath = HotaTabFinder.HotaTabFinder(Homm3TabCellsGrabler.iTabs, Homm3TabCellsGrabler.iLines);
-                cells = $$x("//h3/span[text()='" + Homm3TabCellsGrabler.iTabs + "-й уровень']/../following::table[1]/tbody/tr[" + Homm3TabCellsGrabler.iLines +"]/td");
-                Homm3TabCellsGrabler.countCellsInLine = cells.size();
-                System.out.println("Количество ячеек в строке " + Homm3TabCellsGrabler.countCellsInLine);
-
-                System.out.println("Начали цеплять статы");
-
-                Homm3TabCellsGrabler.crLevel = String.valueOf(Homm3TabCellsGrabler.iTabs);
-                Homm3TabCellsGrabler.gSIndicator = Homm3TabCellsGrabler.iLines - 2;
-
-                System.out.println("Определили уровень: " + Homm3TabCellsGrabler.crLevel);
-                System.out.println("Определили степень улучшения: " + Homm3TabCellsGrabler.gSIndicator);
+        allTabsOnPageHota = tabs.size(); // В этом классе берем только фракционных юнитов HOTA
 
 
-                System.out.println("Getting cells collection. Its length is " + cells.size());
-                System.out.println("\nWorking with cells");
+        for (iTabsHota = 1; iTabsHota <= allTabsOnPageHota; iTabsHota++) {
 
-                for (Homm3TabCellsGrabler.iCells = 0; Homm3TabCellsGrabler.iCells < Homm3TabCellsGrabler.countCellsInLine; Homm3TabCellsGrabler.iCells++) { // Захват данных из таблицы существ
-                    System.out.println("Cell indicator is " + Homm3TabCellsGrabler.iCells);
-                    chosenXPath = HotaTabFinder.HotaTabFinder(Homm3TabCellsGrabler.iTabs, Homm3TabCellsGrabler.iLines, Homm3TabCellsGrabler.iCells);
-                    String paramValue = $x("//h3/span[text()='" + Homm3TabCellsGrabler.iTabs + "-й уровень']/../following::table[1]/tbody/tr[" + Homm3TabCellsGrabler.iLines +"]/td[" + (Homm3TabCellsGrabler.iCells + 1) + "]").getText();
+            if (Main.isNeutral == true){
+                iTabsHota = allTabsOnPageHota + 1;
+                lines = $$x("//h2/span[text()='Нейтральные юниты']/../following::table[1]/tbody/tr");
+                countLinesInTabHota = lines.size();
+                System.out.println("Количество строк в таблице " + countLinesInTabHota);
 
-                    switch (Homm3TabCellsGrabler.iCells + 1) {
+            }
+
+            else {
+
+                chosenXPath = HotaTabFinder.HotaTabFinder(iTabsHota);
+                lines = $$x("//h3/span[text()='" + iTabsHota + "-й уровень']/../following::table[1]/tbody/tr");
+                countLinesInTabHota = lines.size();
+                System.out.println("Количество строк в таблице " + countLinesInTabHota);
+
+            }
+
+            for (iLinesHota = 2; iLinesHota <= countLinesInTabHota; iLinesHota++) {
+
+                chosenXPath = HotaTabFinder.HotaTabFinder(iTabsHota, iLinesHota);
+
+                if (Main.isNeutral == true){
+
+                    cells = $$x("//h2/span[text()='Нейтральные юниты']/../following::table[1]/tbody/tr[" + iLinesHota + "]/td");
+                    countCellsInLineHota = cells.size();
+                    System.out.println("Количество ячеек в строке " + countCellsInLineHota);
+
+                    System.out.println("Начали цеплять статы");
+
+
+                    nLevel = $x("//h2/span[text()='Нейтральные юниты']/../following::table[1]/tbody/tr[" + iLinesHota + "]/th/p/small").getText();
+                    nLevel = nLevel.replace("-й уровень", "");
+
+                }
+
+                else {
+
+                    cells = $$x("//h3/span[text()='" + iTabsHota + "-й уровень']/../following::table[1]/tbody/tr[" + iLinesHota + "]/td");
+                    countCellsInLineHota = cells.size();
+                    System.out.println("Количество ячеек в строке " + countCellsInLineHota);
+
+                    System.out.println("Начали цеплять статы");
+
+                    Homm3TabCellsGrabler.crLevel = String.valueOf(iTabsHota);
+                    Homm3TabCellsGrabler.gSIndicator = iLinesHota - 2;
+
+                    System.out.println("Определили уровень: " + Homm3TabCellsGrabler.crLevel);
+                    System.out.println("Определили степень улучшения: " + Homm3TabCellsGrabler.gSIndicator);
+
+
+                    System.out.println("Getting cells collection. Its length is " + cells.size());
+                    System.out.println("\nWorking with cells");
+
+                }
+
+                for (iCellsHota = 0; iCellsHota < countCellsInLineHota; iCellsHota++) { // Захват данных из таблицы существ
+                    System.out.println("Cell indicator is " + iCellsHota);
+                    chosenXPath = HotaTabFinder.HotaTabFinder(iTabsHota, iLinesHota, iCellsHota);
+
+                    if (Main.isNeutral == true){
+                        paramValue = $x("//h2/span[text()='Нейтральные юниты']/../following::table[1]/tbody/tr[" + iLinesHota +"]/td[" + (iCellsHota + 1) + "]").getText();
+                    }
+
+                    else {
+                        paramValue = $x("//h3/span[text()='" + iTabsHota + "-й уровень']/../following::table[1]/tbody/tr[" + iLinesHota +"]/td[" + (iCellsHota + 1) + "]").getText();
+                    }
+
+
+
+                    switch (iCellsHota + 1) {
 
                         case 1:
                             Homm3CrInfoGrabber.crAttack = paramValue;
@@ -84,40 +141,46 @@ public class  HotaCrInfoGrabber {
                             Homm3CrInfoGrabber.crAIValue = paramValue;
 
                         case 9:
-                            if (Homm3TabCellsGrabler.countCellsInLine == 10) {
+                            if (countCellsInLineHota == 10) {
                                 Homm3CrInfoGrabber.crShots = paramValue;
                             }
-                            if (Homm3TabCellsGrabler.countCellsInLine == 9) {
+                            if (countCellsInLineHota == 9) {
                                 Homm3CrInfoGrabber.crFeatures = paramValue;
                                 Homm3CrInfoGrabber.crShots = "-";
                             }
 
                         case 10:
-                            if (Homm3TabCellsGrabler.countCellsInLine == 10) {
+                            if (countCellsInLineHota == 10) {
                                 Homm3CrInfoGrabber.crFeatures = paramValue;
                             }
 
                         default:
-                            System.out.println("Wrong way!");
+                            // System.out.println("Wrong way!");
                     }
 
                 }
 
-                Homm3CrInfoGrabber.crName = nameGetterForHota.nameGetterForHota(Homm3TabCellsGrabler.iTabs, Homm3TabCellsGrabler.gSIndicator);
                 Homm3CrInfoGrabber.crFeatures = Homm3CrInfoGrabber.crFeatures.replace("\n", " ");
 
-                System.out.println(Homm3CrInfoGrabber.crName + ", фракция: " + Homm3CrInfoGrabber.crFraction + ", стоимость: " + Homm3CrInfoGrabber.crPrice + ", прирост: " + Homm3CrInfoGrabber.crGrowthPerWeek
-                        + ", атака: " + Homm3CrInfoGrabber.crAttack + ", защита: " + Homm3CrInfoGrabber.crDefence + ", выстрелы: " + Homm3CrInfoGrabber.crShots + ", урон: " + Homm3CrInfoGrabber.crDamage
-                        + ", здоровье: " + Homm3CrInfoGrabber.crHealth + ", скорость: " + Homm3CrInfoGrabber.crSpeed + ", особенности: " + Homm3CrInfoGrabber.crFeatures);
+                if (Main.isNeutral == false) {
+                    Homm3CrInfoGrabber.crName = nameGetterForHota.nameGetterForHota(iTabsHota, Homm3TabCellsGrabler.gSIndicator);
+                    System.out.println(Homm3CrInfoGrabber.crName + ", фракция: " + Homm3CrInfoGrabber.crFraction + ", стоимость: " + Homm3CrInfoGrabber.crPrice + ", прирост: " + Homm3CrInfoGrabber.crGrowthPerWeek
+                            + ", атака: " + Homm3CrInfoGrabber.crAttack + ", защита: " + Homm3CrInfoGrabber.crDefence + ", выстрелы: " + Homm3CrInfoGrabber.crShots + ", урон: " + Homm3CrInfoGrabber.crDamage
+                            + ", здоровье: " + Homm3CrInfoGrabber.crHealth + ", скорость: " + Homm3CrInfoGrabber.crSpeed + ", особенности: " + Homm3CrInfoGrabber.crFeatures);
 
-                InfoTransport.InfoTransport();
+                    InfoTransport.InfoTransport();
 
-               // "//h3/span[contains(text(),'-й уровень')]"
-                // "//h3/span[contains(text(),'-й уровень')]/../following::table[1]/tbody/tr[1]/td[1]"
+                }
 
+                if (Main.isNeutral == true && nLevel.equals(Homm3TabCellsGrabler.crLevel)) {
+                    Homm3TabCellsGrabler.gSIndicator++;
+                    Homm3CrInfoGrabber.crName = $x("//h2/span[text()='Нейтральные юниты']/../following::table[1]/tbody/tr[" + iLinesHota + "]/th/p").getText();
+                    InfoTransport.InfoTransport();
+                }
 
-
-
+                else {
+                    System.out.println("В нейтралах Hota нет существ уровня " + Homm3TabCellsGrabler.crLevel);
+                }
             }
         }
     }

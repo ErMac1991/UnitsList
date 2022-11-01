@@ -1,8 +1,6 @@
 import com.codeborne.selenide.*;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.*;
-import org.openqa.selenium.WebElement;
-
 import static com.codeborne.selenide.Configuration.*;
 import static com.codeborne.selenide.Selenide.*;
 
@@ -11,8 +9,8 @@ import static com.codeborne.selenide.Selenide.*;
 public  class Main {
     static String urlSiteHommWiki = "https://mightandmagic.fandom.com/ru/";
     static String urlGoogleDocs = "https://docs.google.com/";
-
     static String urlCrTabs = null;
+    static boolean isNeutral;
 
 
      @Before
@@ -30,6 +28,8 @@ public  class Main {
 
     public void Engine(){
 
+
+
         //Пытаемся открыть вторую вкладку браузера
 
         open();
@@ -42,6 +42,14 @@ public  class Main {
         open(urlGoogleDocs);
         CreateGoogleTab.CreateGoogleTab();
 
+        // Подтягиваем инфу про нейтралов
+
+        Selenide.switchTo().window(1);
+        isNeutral = true;
+        FollowHomm3Creatures.FollowHomm3Creatures();
+        Homm3TabCellsGrabler.Homm3TabCellsGrabler();
+
+
         // Переключаемся на вторую вкладку и переходим в раздел существ HOTA
 
         Selenide.switchTo().window(1);
@@ -49,6 +57,7 @@ public  class Main {
 
         // Запускаем машину по подтягиванию статов
 
+        isNeutral = false;
         HotaCrInfoGrabber.HotaCrInfoGrabber();
 
         // Переключаемся на вторую вкладку и переходим в раздел существ HOMM3
@@ -58,6 +67,7 @@ public  class Main {
 
         // Запускаем машину по подтягиванию статов
 
+        isNeutral = false;
         Homm3TabCellsGrabler.Homm3TabCellsGrabler();
 
 

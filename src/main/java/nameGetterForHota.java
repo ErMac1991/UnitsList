@@ -9,7 +9,7 @@ public class nameGetterForHota {
 
 
 
-        input = $x("//h3/span[text()='" + Homm3TabCellsGrabler.iTabs + "-й уровень']/../following::table[1]/tbody/tr[1]/th[1]/p//b[1]").getText();
+        input = $x("//h3/span[text()='" + iTabs + "-й уровень']/../following::table[1]/tbody/tr[1]/th[1]/p//b[1]").getText();
         input = input.replace("\n", "");
 
         System.out.println("Обработанный инпут: ");

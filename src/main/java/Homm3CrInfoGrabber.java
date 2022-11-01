@@ -39,7 +39,7 @@ public class Homm3CrInfoGrabber {
         crHealth = $x("//h3[b[text()='Здоровье']]/../div[@class='pi-data-value pi-font']").getText();
         crSpeed = $x("//h3[b[text()='Скорость']]/../div[@class='pi-data-value pi-font']").getText();
         if ((crFraction.equals("Нейтральный")) || (crFraction.equals("Нейтральные юниты"))){
-            crFraction.equals("Нейтралы");
+            crFraction ="Нейтралы";
 
         }
         if ($x("//span[@id='Особенности']").exists()) {
