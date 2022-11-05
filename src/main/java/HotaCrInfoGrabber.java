@@ -3,7 +3,7 @@ import com.codeborne.selenide.Selenide;
 
 import static com.codeborne.selenide.Selenide.*;
 
-public class  HotaCrInfoGrabber {
+public class  HotaCrInfoGrabber { // ѕеребор €чеек таблицы Hota
     static int iTabsHota;
     static int iLinesHota;
     static int iCellsHota;
@@ -173,9 +173,9 @@ public class  HotaCrInfoGrabber {
 
                 if (Main.isNeutral == false) {
                     Homm3CrInfoGrabber.crName = nameGetterForHota.nameGetterForHota(iTabsHota, Homm3TabCellsGrabler.gSIndicator);
-                    System.out.println(Homm3CrInfoGrabber.crName + ", фракци€: " + Homm3CrInfoGrabber.crFraction + ", стоимость: " + Homm3CrInfoGrabber.crPrice + ", прирост: " + Homm3CrInfoGrabber.crGrowthPerWeek
-                            + ", атака: " + Homm3CrInfoGrabber.crAttack + ", защита: " + Homm3CrInfoGrabber.crDefence + ", выстрелы: " + Homm3CrInfoGrabber.crShots + ", урон: " + Homm3CrInfoGrabber.crDamage
-                            + ", здоровье: " + Homm3CrInfoGrabber.crHealth + ", скорость: " + Homm3CrInfoGrabber.crSpeed + ", особенности: " + Homm3CrInfoGrabber.crFeatures);
+                   // System.out.println(Homm3CrInfoGrabber.crName + ", фракци€: " + Homm3CrInfoGrabber.crFraction + ", стоимость: " + Homm3CrInfoGrabber.crPrice + ", прирост: " + Homm3CrInfoGrabber.crGrowthPerWeek
+                   //         + ", атака: " + Homm3CrInfoGrabber.crAttack + ", защита: " + Homm3CrInfoGrabber.crDefence + ", выстрелы: " + Homm3CrInfoGrabber.crShots + ", урон: " + Homm3CrInfoGrabber.crDamage
+                   //         + ", здоровье: " + Homm3CrInfoGrabber.crHealth + ", скорость: " + Homm3CrInfoGrabber.crSpeed + ", особенности: " + Homm3CrInfoGrabber.crFeatures);
 
                     InfoTransport.InfoTransport();
                     PicGrabblerHota.PicGrabblerHota("//h3/span[text()='" + iTabsHota + "-й уровень']/../following::table[1]/tbody/tr[" + iLinesHota + "]");

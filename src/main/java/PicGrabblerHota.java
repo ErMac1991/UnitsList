@@ -7,7 +7,7 @@ import java.awt.event.KeyEvent;
 import static com.codeborne.selenide.Selenide.*;
 
 public class PicGrabblerHota {
-    public static void PicGrabblerHota(String xPathOfLine) {
+    public static void PicGrabblerHota(String xPathOfLine) { // Находим и переносим изображения существ
 
         String xPathOfPic = xPathOfLine + "/th/div/div[@class='floatnone']";
         $x(xPathOfPic).contextClick(); // Клик правой кнопкой

@@ -1,8 +1,8 @@
 import com.codeborne.selenide.*;
-
 import static com.codeborne.selenide.Selenide.*;
 
-public class Homm3TabCellsGrabler {
+public class Homm3TabCellsGrabler { // Перебор ячеек таблицы Homm3
+
     public static String crLevel = null; // Ранг существа
     public static String prevLevel = null; // Значение ранга предыдущего существа
     public static boolean gS = false;
@@ -16,10 +16,7 @@ public class Homm3TabCellsGrabler {
 
     public static void Homm3TabCellsGrabler() {
 
-
         String urlOfCard = null;        // Ссылка на карточку существа
-
-
 
         ElementsCollection tabs = $$x("//table"); // Список таблиц
         ElementsCollection lines; // Список строк в таблице
@@ -74,9 +71,9 @@ public class Homm3TabCellsGrabler {
                             Homm3CrInfoGrabber.Homm3CrInfoGrabber(urlOfCard);
                             break;
 
-                        case 3: // Подтягиваем иконку существа
-                          System.out.println("We'll work with icons later");
-                            break;
+                       // case 3: // Пропуск
+
+                        //    break;
 
                         case 4: // Проваливаемся в карточку ГС существа и подтягивает статы
                             urlOfCard = cells.get(iCells).find("a").getAttribute("href");
@@ -90,16 +87,16 @@ public class Homm3TabCellsGrabler {
                                 gSIndicator++;
                             }
 
-                          System.out.println("Name of GS  is received its " + Homm3CrInfoGrabber.crName);
+
                             Homm3CrInfoGrabber.Homm3CrInfoGrabber(urlOfCard);
                             break;
 
-                        case 5: // Подтягиваем иконку ГС существа
-                         System.out.println("We'll work with these icons later too");
-                            break;
+                       // case 5: // Пропуск
+
+                          //  break;
 
                         default:
-                            System.out.println("Wrong way");
+
 
                     }
                 }
@@ -109,7 +106,7 @@ public class Homm3TabCellsGrabler {
                     FollowHotaCr.FollowHotaCr();
                     HotaCrInfoGrabber.HotaCrInfoGrabber();
                     open(Main.urlCrTabs);
-                    System.out.println("Вернулись на страницу с таблицами существ Homm3");
+
 
                 }
 

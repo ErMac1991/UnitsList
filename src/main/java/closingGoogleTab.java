@@ -3,7 +3,7 @@ import com.codeborne.selenide.Selenide;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
-public class closingGoogleTab {
+public class closingGoogleTab { // Выравниваем таблицу, экспортируем и закрываем Гуглтаб
     public static void closingGoogleTab(){
         String tabName = "Таблица юнитов HOMM3 + HOTA";
 

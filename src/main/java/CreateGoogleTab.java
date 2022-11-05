@@ -7,13 +7,10 @@ public class CreateGoogleTab {
     // Открытие таблицы гуглдок
 
     public static void CreateGoogleTab() {
-       // Selenide.sleep(2000);
+
             Selenide.$x("//input[@type='email']").setValue(email);
-       // Selenide.sleep(2000);
             Clicker.Clicker("//button/span[text()='Далее']");
-       // Selenide.sleep(5000);
         Selenide.$x("//input[@type='password']").setValue(password);
-      //  Selenide.sleep(2000);
         Clicker.Clicker("//button/span[text()='Далее']");
 
 
@@ -28,20 +25,6 @@ public class CreateGoogleTab {
             Clicker.Clicker("//div[text()='Таблицы']");
             Clicker.Clicker("//div[text()='Пустой файл']/../../../div[@class='docs-homescreen-templates-templateview-preview " +
                     "docs-homescreen-templates-templateview-preview-showcase']");
-
-
-
-
-       // "//h1/span[text()='Подтвердите свою личность']"
-
-
-
-        // "//div[text()='Подтвердите резервный адрес электронной почты']"
-        // "//div[text()='Введите резервный адрес электронной почты']"
-        // "//button/span[text()='Далее']"
-
-
-
 
     }
 

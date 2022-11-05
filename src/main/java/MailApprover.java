@@ -1,9 +1,8 @@
 import com.codeborne.selenide.Selenide;
 
 public class MailApprover {
-    public static void MailApprover() {
+    public static void MailApprover() { // На случай, если гуглтаб при входе попросит подтвердить почту
         String mailForApprove = "testovtesterdop@gmail.com";
-        // String pass = "TestTest";
 
         Clicker.Clicker("//div[text()='Подтвердите резервный адрес электронной почты']");
 

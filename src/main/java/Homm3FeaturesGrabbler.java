@@ -4,7 +4,10 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class Homm3FeaturesGrabbler {
     public static String Homm3FeaturesGrabbler() {
-        String feature = "";
+
+        // Подтягиваем особенности существ Homm3
+
+        String feature = "Нет";
         int iFeat;
 
         ElementsCollection features = $$x("//span[@id='Особенности']/following::ul[1]/li");

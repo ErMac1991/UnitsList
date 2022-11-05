@@ -1,9 +1,9 @@
 import com.codeborne.selenide.Selenide;
 
-
-
 public class gTabCellDataPaste {
-    //
+
+    // ¬писываем данные в €чейку гуглтаба
+
     public static void gTabCellDataPaste(char baseColumn, int baseLine, String data){
         Selenide.$x("//input[@id]")
                 .click();

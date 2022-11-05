@@ -4,7 +4,7 @@ import static com.codeborne.selenide.Selenide.$$x;
 import static com.codeborne.selenide.Selenide.$x;
 
 public class PriceNormalizerHota {
-    public static String PriceNormalizerHota (String xPathOfPrice) {
+    public static String PriceNormalizerHota (String xPathOfPrice) { // ѕолучаем стоимость существа Hota (в т.ч. составную)
         String price = "";
         String res = "";
         String countRes = "";

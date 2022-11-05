@@ -1,6 +1,7 @@
 import com.codeborne.selenide.Selenide;
 
-public class HotaTabFinder {
+public class HotaTabFinder { // Находим таблицу, вне зависимости от того, сжата она или нет
+
     public static int wideControl; // Переменная для контроля широких таблиц
     public static int thinControl; // Переменная для контроля узких таблиц
     public static String xPathOfTabElement;
@@ -41,10 +42,5 @@ public class HotaTabFinder {
         return xPathOfTabElement;
     }
 
-
-    // "//div[@class='mw-parser-output']/table[1]/tbody/tr[2]/td[1]" без расширения
-    // "//div[@class='mw-parser-output']/div[@class='table-wide'][1]//table//tr[2]/td[1]" с расширением
-
-    // "//h3/span[contains(text(),'" + iTab + "-й уровень')]/../following::table[1]/tbody/tr[2]/td[3]"
 
 }

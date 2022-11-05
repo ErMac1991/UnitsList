@@ -4,6 +4,9 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class FollowHomm3Creatures {
     public static void FollowHomm3Creatures() {
+
+        // Переход на страницу со списком сужеств Homm3
+
         Selenide.switchTo().window(1);
         open(Main.urlSiteHommWiki);
 

@@ -4,7 +4,7 @@ import static com.codeborne.selenide.Selenide.$$x;
 import static com.codeborne.selenide.Selenide.$x;
 
 public class PriceNormalizer {
-    public static String PriceNormalizer(String xPathOfPrice) {
+    public static String PriceNormalizer(String xPathOfPrice) { // ѕолучаем стоимость существа Homm3 (в т.ч. составную)
         String price = "";
         String countRes = "";
         String countGold = "";

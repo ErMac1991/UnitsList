@@ -6,7 +6,7 @@ import java.awt.event.KeyEvent;
 import static com.codeborne.selenide.Selenide.$x;
 
 public class PicCopypaster {
-    public static void PicCopypaster(){
+    public static void PicCopypaster(){ //  опируем изображение существа в таблицу
         Robot picRemover;
 
         Selenide.sleep(500);

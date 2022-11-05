@@ -4,6 +4,9 @@ import com.codeborne.selenide.Selenide;
 import static com.codeborne.selenide.Selenide.*;
 
 public class Homm3CrInfoGrabber {
+
+    // Подтягиваем статы существ Homm3
+
     static String crName;        // Название существа
     static String crAIValue;        // Ценность по ИИ
     static String crFraction;    // Фракция

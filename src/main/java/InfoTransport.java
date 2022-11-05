@@ -1,6 +1,7 @@
 import com.codeborne.selenide.Selenide;
 
-public class InfoTransport {
+public class InfoTransport { // Заносим подтянутую инфу в гуглтаб
+
     static int baseLine = -6; // Строка, от которой ведется расчет ячейки
     static String tabFraction = "null"; // Переменная для проверки фракции
     static String tabLevel = "0";
@@ -13,9 +14,6 @@ public class InfoTransport {
 
         Selenide.switchTo().window(0);
 
-
-
-
         if (Homm3TabCellsGrabler.gSIndicator > 0){
             baseColumn = (char) (baseColumn + (6 * Homm3TabCellsGrabler.gSIndicator));
             if (Main.isNeutral == false) {
@@ -25,7 +23,6 @@ public class InfoTransport {
         }
         if (Homm3TabCellsGrabler.gSIndicator == 0) {
             baseLine = baseLine + 6;
-            //tabLevel = Homm3TabCellsGrabler.crLevel;
         }
 
 
@@ -75,8 +72,6 @@ public class InfoTransport {
         gTabCellDataPaste.gTabCellDataPaste((char)(baseColumn+4), baseLine+4, "Прирост");
         gTabCellDataPaste.gTabCellDataPaste((char)(baseColumn+5), baseLine+4, Homm3CrInfoGrabber.crGrowthPerWeek); // Вносим прирост
         gTabCellDataPaste.gTabCellDataPaste((char)(baseColumn+1), baseLine+5, Homm3CrInfoGrabber.crFeatures); // Вносим особенности
-
-
 
         Selenide.switchTo().window(1);
     }
