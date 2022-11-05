@@ -4,11 +4,12 @@ public class InfoTransport {
     static int baseLine = -6; // Строка, от которой ведется расчет ячейки
     static String tabFraction = "null"; // Переменная для проверки фракции
     static String tabLevel = "0";
+    static char baseColumn; // Столбец, от которого ведется расчет ячейки
 
     public static void InfoTransport(){
 
+        baseColumn = 'A';
 
-        char baseColumn = 'A'; // Столбец, от которого ведется расчет ячейки
 
         Selenide.switchTo().window(0);
 

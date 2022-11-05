@@ -105,11 +105,11 @@ public class  HotaCrInfoGrabber {
                     chosenXPath = HotaTabFinder.HotaTabFinder(iTabsHota, iLinesHota, iCellsHota);
 
                     if (Main.isNeutral == true){
-                        paramValue = $x("//h2/span[text()='Нейтральные юниты']/../following::table[1]/tbody/tr[" + iLinesHota +"]/td[" + (iCellsHota + 1) + "]").getText();
+                        paramValue = "//h2/span[text()='Нейтральные юниты']/../following::table[1]/tbody/tr[" + iLinesHota +"]/td[" + (iCellsHota + 1) + "]";
                     }
 
                     else {
-                        paramValue = $x("//h3/span[text()='" + iTabsHota + "-й уровень']/../following::table[1]/tbody/tr[" + iLinesHota +"]/td[" + (iCellsHota + 1) + "]").getText();
+                        paramValue = "//h3/span[text()='" + iTabsHota + "-й уровень']/../following::table[1]/tbody/tr[" + iLinesHota +"]/td[" + (iCellsHota + 1) + "]";
                     }
 
 
@@ -117,41 +117,50 @@ public class  HotaCrInfoGrabber {
                     switch (iCellsHota + 1) {
 
                         case 1:
-                            Homm3CrInfoGrabber.crAttack = paramValue;
+                            Homm3CrInfoGrabber.crAttack = $x(paramValue).getText();
 
                         case 2:
-                            Homm3CrInfoGrabber.crDefence = paramValue;
+                            Homm3CrInfoGrabber.crDefence = $x(paramValue).getText();
 
                         case 3:
-                            Homm3CrInfoGrabber.crHealth = paramValue;
+                            Homm3CrInfoGrabber.crHealth = $x(paramValue).getText();
 
                         case 4:
-                            Homm3CrInfoGrabber.crDamage = paramValue;
+                            Homm3CrInfoGrabber.crDamage = $x(paramValue).getText();
 
                         case 5:
-                            Homm3CrInfoGrabber.crSpeed = paramValue;
+                            Homm3CrInfoGrabber.crSpeed = $x(paramValue).getText();
 
                         case 6:
-                            Homm3CrInfoGrabber.crGrowthPerWeek = paramValue;
+                            Homm3CrInfoGrabber.crGrowthPerWeek = $x(paramValue).getText();
 
                         case 7:
-                            Homm3CrInfoGrabber.crPrice = paramValue;
+                            Homm3CrInfoGrabber.crPrice = PriceNormalizerHota.PriceNormalizerHota(paramValue);
 
                         case 8:
-                            Homm3CrInfoGrabber.crAIValue = paramValue;
+                            Homm3CrInfoGrabber.crAIValue = $x(paramValue).getText();
 
                         case 9:
                             if (countCellsInLineHota == 10) {
-                                Homm3CrInfoGrabber.crShots = paramValue;
+                                Homm3CrInfoGrabber.crShots = $x(paramValue).getText();
                             }
                             if (countCellsInLineHota == 9) {
-                                Homm3CrInfoGrabber.crFeatures = paramValue;
+                                Homm3CrInfoGrabber.crFeatures = $x(paramValue).getText();
+
+                                if ($x(paramValue + "/p//sup").exists()) {
+                                    Homm3CrInfoGrabber.crFeatures = FeaturesInfoWider.FeaturesInfoWider((paramValue + "/p//sup"), Homm3CrInfoGrabber.crFeatures);
+                                }
+
                                 Homm3CrInfoGrabber.crShots = "-";
                             }
 
                         case 10:
                             if (countCellsInLineHota == 10) {
-                                Homm3CrInfoGrabber.crFeatures = paramValue;
+                                Homm3CrInfoGrabber.crFeatures = $x(paramValue).getText();
+
+                                if ($x(paramValue + "/p//sup").exists()) {
+                                    Homm3CrInfoGrabber.crFeatures = FeaturesInfoWider.FeaturesInfoWider((paramValue + "/p//sup"), Homm3CrInfoGrabber.crFeatures);
+                                }
                             }
 
                         default:
@@ -169,6 +178,7 @@ public class  HotaCrInfoGrabber {
                             + ", здоровье: " + Homm3CrInfoGrabber.crHealth + ", скорость: " + Homm3CrInfoGrabber.crSpeed + ", особенности: " + Homm3CrInfoGrabber.crFeatures);
 
                     InfoTransport.InfoTransport();
+                    PicGrabblerHota.PicGrabblerHota("//h3/span[text()='" + iTabsHota + "-й уровень']/../following::table[1]/tbody/tr[" + iLinesHota + "]");
 
                 }
 
@@ -176,6 +186,7 @@ public class  HotaCrInfoGrabber {
                     Homm3TabCellsGrabler.gSIndicator++;
                     Homm3CrInfoGrabber.crName = $x("//h2/span[text()='Нейтральные юниты']/../following::table[1]/tbody/tr[" + iLinesHota + "]/th/p").getText();
                     InfoTransport.InfoTransport();
+                    PicGrabblerHota.PicGrabblerHota("//h2/span[text()='Нейтральные юниты']/../following::table[1]/tbody/tr[" + iLinesHota + "]");
                 }
 
                 else {

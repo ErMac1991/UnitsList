@@ -1,12 +1,6 @@
-import com.codeborne.selenide.Condition;
+
 import com.codeborne.selenide.Selenide;
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.WebElement;
 
-import java.util.Collection;
-import java.util.NoSuchElementException;
-
-import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 
 public class Homm3CrInfoGrabber {
@@ -25,11 +19,11 @@ public class Homm3CrInfoGrabber {
 
     public static void Homm3CrInfoGrabber(String urlOfCard){
         Selenide.switchTo().window(1);
-        crFeatures = "";
+        crFeatures = "Нет";
         open(urlOfCard);
         crName = $x("//h2[@class='pi-item pi-item-spacing pi-title pi-secondary-background']").getText();
         crFraction = $x("//h3[b[text()='Фракция']]/../div[@class='pi-data-value pi-font']").getText();
-        crPrice = $x("//h3[b[text()='Стоимость']]/../div[@class='pi-data-value pi-font']").getText();
+        crPrice = PriceNormalizer.PriceNormalizer("//h3[b[text()='Стоимость']]/../div[@class='pi-data-value pi-font']");
         crGrowthPerWeek = $x("//h3[b[text()='Базовый прирост']]/../div[@class='pi-data-value pi-font']").getText();
         crAIValue = $x("//h3[p[span[text()='Значение AI']]]/../div[@class='pi-data-value pi-font']").getText();
         crAttack = $x("//h3[b[text()='Атака']]/../div[@class='pi-data-value pi-font']").getText();
@@ -43,14 +37,15 @@ public class Homm3CrInfoGrabber {
 
         }
         if ($x("//span[@id='Особенности']").exists()) {
-            crFeatures = $x("//span[@id='Особенности']/following::ul/li").getText();
-            crFeatures = crFeatures.replace("\n", " ");
+            crFeatures = Homm3FeaturesGrabbler.Homm3FeaturesGrabbler();
+            crFeatures = TextCleaner.TextCleaner(crFeatures);
         }
 
        // String stats[] = {crFraction, Homm3TabCellsGrabler.crLevel, crName, crAttack, crDefence, crShots, crDamage, crHealth,
        //         crSpeed, crPrice, crGrowthPerWeek, crAIValue, crFeatures};
 
         InfoTransport.InfoTransport();
+        PicGrabblerHota.PicGrabblerHomm3("//a[@class='image image-thumbnail']/img");
         open(Main.urlCrTabs);
 
 
