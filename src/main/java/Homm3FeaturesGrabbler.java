@@ -7,7 +7,7 @@ public class Homm3FeaturesGrabbler {
 
         // Подтягиваем особенности существ Homm3
 
-        String feature = "Нет";
+        String feature = "";
         int iFeat;
 
         ElementsCollection features = $$x("//span[@id='Особенности']/following::ul[1]/li");

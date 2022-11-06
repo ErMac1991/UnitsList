@@ -31,14 +31,9 @@ public class  HotaCrInfoGrabber { // Перебор ячеек таблицы Hota
 
         Selenide.switchTo().window(1);
 
-        System.out.println("Определили фракцию: " + Homm3CrInfoGrabber.crFraction);
-
         ElementsCollection tabs = $$x("//h3/span[contains(text(),'-й уровень')]/../following::table[1]"); // Список таблиц
         ElementsCollection lines; // Список строк в таблице
         ElementsCollection cells; // Список ячеек в строке
-
-        System.out.println("Подтянули таблицы, их " + tabs.size());
-
 
         allTabsOnPageHota = tabs.size(); // В этом классе берем только фракционных юнитов HOTA
 
@@ -49,7 +44,6 @@ public class  HotaCrInfoGrabber { // Перебор ячеек таблицы Hota
                 iTabsHota = allTabsOnPageHota + 1;
                 lines = $$x("//h2/span[text()='Нейтральные юниты']/../following::table[1]/tbody/tr");
                 countLinesInTabHota = lines.size();
-                System.out.println("Количество строк в таблице " + countLinesInTabHota);
 
             }
 
@@ -58,7 +52,6 @@ public class  HotaCrInfoGrabber { // Перебор ячеек таблицы Hota
                 chosenXPath = HotaTabFinder.HotaTabFinder(iTabsHota);
                 lines = $$x("//h3/span[text()='" + iTabsHota + "-й уровень']/../following::table[1]/tbody/tr");
                 countLinesInTabHota = lines.size();
-                System.out.println("Количество строк в таблице " + countLinesInTabHota);
 
             }
 
@@ -70,10 +63,6 @@ public class  HotaCrInfoGrabber { // Перебор ячеек таблицы Hota
 
                     cells = $$x("//h2/span[text()='Нейтральные юниты']/../following::table[1]/tbody/tr[" + iLinesHota + "]/td");
                     countCellsInLineHota = cells.size();
-                    System.out.println("Количество ячеек в строке " + countCellsInLineHota);
-
-                    System.out.println("Начали цеплять статы");
-
 
                     nLevel = $x("//h2/span[text()='Нейтральные юниты']/../following::table[1]/tbody/tr[" + iLinesHota + "]/th/p/small").getText();
                     nLevel = nLevel.replace("-й уровень", "");
@@ -84,19 +73,9 @@ public class  HotaCrInfoGrabber { // Перебор ячеек таблицы Hota
 
                     cells = $$x("//h3/span[text()='" + iTabsHota + "-й уровень']/../following::table[1]/tbody/tr[" + iLinesHota + "]/td");
                     countCellsInLineHota = cells.size();
-                    System.out.println("Количество ячеек в строке " + countCellsInLineHota);
-
-                    System.out.println("Начали цеплять статы");
 
                     Homm3TabCellsGrabler.crLevel = String.valueOf(iTabsHota);
                     Homm3TabCellsGrabler.gSIndicator = iLinesHota - 2;
-
-                    System.out.println("Определили уровень: " + Homm3TabCellsGrabler.crLevel);
-                    System.out.println("Определили степень улучшения: " + Homm3TabCellsGrabler.gSIndicator);
-
-
-                    System.out.println("Getting cells collection. Its length is " + cells.size());
-                    System.out.println("\nWorking with cells");
 
                 }
 
@@ -173,9 +152,6 @@ public class  HotaCrInfoGrabber { // Перебор ячеек таблицы Hota
 
                 if (Main.isNeutral == false) {
                     Homm3CrInfoGrabber.crName = nameGetterForHota.nameGetterForHota(iTabsHota, Homm3TabCellsGrabler.gSIndicator);
-                   // System.out.println(Homm3CrInfoGrabber.crName + ", фракция: " + Homm3CrInfoGrabber.crFraction + ", стоимость: " + Homm3CrInfoGrabber.crPrice + ", прирост: " + Homm3CrInfoGrabber.crGrowthPerWeek
-                   //         + ", атака: " + Homm3CrInfoGrabber.crAttack + ", защита: " + Homm3CrInfoGrabber.crDefence + ", выстрелы: " + Homm3CrInfoGrabber.crShots + ", урон: " + Homm3CrInfoGrabber.crDamage
-                   //         + ", здоровье: " + Homm3CrInfoGrabber.crHealth + ", скорость: " + Homm3CrInfoGrabber.crSpeed + ", особенности: " + Homm3CrInfoGrabber.crFeatures);
 
                     InfoTransport.InfoTransport();
                     PicGrabblerHota.PicGrabblerHota("//h3/span[text()='" + iTabsHota + "-й уровень']/../following::table[1]/tbody/tr[" + iLinesHota + "]");

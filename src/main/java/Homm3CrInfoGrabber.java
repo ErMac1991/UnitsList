@@ -22,7 +22,7 @@ public class Homm3CrInfoGrabber {
 
     public static void Homm3CrInfoGrabber(String urlOfCard){
         Selenide.switchTo().window(1);
-        crFeatures = "Нет";
+        crFeatures = "";
         open(urlOfCard);
         crName = $x("//h2[@class='pi-item pi-item-spacing pi-title pi-secondary-background']").getText();
         crFraction = $x("//h3[b[text()='Фракция']]/../div[@class='pi-data-value pi-font']").getText();
@@ -47,15 +47,13 @@ public class Homm3CrInfoGrabber {
        // String stats[] = {crFraction, Homm3TabCellsGrabler.crLevel, crName, crAttack, crDefence, crShots, crDamage, crHealth,
        //         crSpeed, crPrice, crGrowthPerWeek, crAIValue, crFeatures};
 
+        if (crFeatures.equals("")) {
+            crFeatures = "Нет";
+        }
+
         InfoTransport.InfoTransport();
         PicGrabblerHota.PicGrabblerHomm3("//a[@class='image image-thumbnail']/img");
         open(Main.urlCrTabs);
-
-
-      /*   System.out.println(crName + ", фракция: " + crFraction + ", стоимость: " + crPrice + ", прирост: " + crGrowthPerWeek
-                + ", атака: " + crAttack + ", защита: " + crDefence + ", выстрелы: " + crShots + ", урон: " + crDamage
-                + ", здоровье: " + crHealth + ", скорость: " + crSpeed + ", особенности: " + crFeatures); */
-
 
     }
 }

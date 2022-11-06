@@ -42,25 +42,29 @@ public  class Main {
         open(urlGoogleDocs);
         CreateGoogleTab.CreateGoogleTab();
 
-        // Переключаемся на вторую вкладку и переходим в раздел существ HOMM3
-
-        Selenide.switchTo().window(1);
-        FollowHomm3Creatures.FollowHomm3Creatures();
-
-        // Запускаем машину по подтягиванию статов
-
-        isNeutral = false;
-        Homm3TabCellsGrabler.Homm3TabCellsGrabler();
-
         // Переключаемся на вторую вкладку и переходим в раздел существ HOTA
 
         Selenide.switchTo().window(1);
+        isNeutral = false;
         FollowHotaCr.FollowHotaCr();
 
         // Запускаем машину по подтягиванию статов
 
-        isNeutral = false;
+
         HotaCrInfoGrabber.HotaCrInfoGrabber();
+
+
+
+        // Переключаемся на вторую вкладку и переходим в раздел существ HOMM3
+
+        Selenide.switchTo().window(1);
+        isNeutral = false;
+        FollowHomm3Creatures.FollowHomm3Creatures();
+
+        // Запускаем машину по подтягиванию статов
+
+
+        Homm3TabCellsGrabler.Homm3TabCellsGrabler();
 
 
         // Подтягиваем инфу про нейтралов

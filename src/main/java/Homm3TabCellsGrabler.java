@@ -36,22 +36,20 @@ public class Homm3TabCellsGrabler { // Перебор ячеек таблицы Homm3
 
             lines = $$x("//table[" + iTabs + "]//tr");
             countLinesInTab = lines.size();
-           System.out.println(countLinesInTab);
+
 
             for (iLines = 2; iLines <= countLinesInTab; iLines++) {
                 cells = $$x("//table[" + iTabs + "]//tr[" + iLines + "]//td");
                 countCellsInLine = cells.size();
-              System.out.println("Getting cells collection. Its length is " + cells.size());
-               System.out.println("\nWorking with cells");
+
 
                 for (iCells = 0; iCells < countCellsInLine; iCells++) { // Захват данных из таблицы существ
-                 System.out.println("Cell indicator is " + iCells);
+
                     switch (iCells+1) {
 
                         case 1: // Подтягиваем уровень существа
                             crLevel = cells.get(iCells).getText();
 
-                         System.out.println("Level of creature is received,its " + crLevel);
                             break;
 
                         case 2: // Пороваливаемся в карточку существа и подтягивает статы
@@ -67,17 +65,12 @@ public class Homm3TabCellsGrabler { // Перебор ячеек таблицы Homm3
                             }
 
                             urlOfCard = cells.get(iCells).find("a").getAttribute("href");
-                        System.out.println(urlOfCard);
                             Homm3CrInfoGrabber.Homm3CrInfoGrabber(urlOfCard);
                             break;
 
-                       // case 3: // Пропуск
-
-                        //    break;
 
                         case 4: // Проваливаемся в карточку ГС существа и подтягивает статы
                             urlOfCard = cells.get(iCells).find("a").getAttribute("href");
-                            //gS = true;
 
                             if (!crLevel.equals(prevLevel)){
                                 gSIndicator = 0;
@@ -90,10 +83,6 @@ public class Homm3TabCellsGrabler { // Перебор ячеек таблицы Homm3
 
                             Homm3CrInfoGrabber.Homm3CrInfoGrabber(urlOfCard);
                             break;
-
-                       // case 5: // Пропуск
-
-                          //  break;
 
                         default:
 
